@@ -5,7 +5,7 @@ import flush from 'styled-jsx/server';
 
 class MyDocument extends Document {
   render() {
-    const { pageContext } = this.props
+    const { pageContext } = this.props;
 
     return (
       <html lang="en" dir="ltr">
@@ -28,8 +28,7 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </html>
-
-    )
+    );
   }
 }
 
@@ -58,19 +57,15 @@ MyDocument.getInitialProps = ctx => {
 
   // Render app and page and get the context of the page with collected side effects.
   let pageContext;
+
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
       pageContext = props.pageContext;
       return <Component {...props} />;
     };
 
-    WrappedComponent.propTypes = {
-      pageContext: PropTypes.object.isRequired,
-    };
-
     return WrappedComponent;
   });
-
   return {
     ...page,
     pageContext,

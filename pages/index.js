@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
+import { connect } from 'react-redux'
+import compose from 'recompose/compose'
+
 const styles = theme => ({
   root: {
     textAlign: 'center',
@@ -37,7 +40,6 @@ class Index extends React.Component {
   render() {
     const { classes } = this.props;
     const { open } = this.state;
-
     return (
       <div className={classes.root}>
         <Dialog open={open} onClose={this.handleClose}>
@@ -58,7 +60,7 @@ class Index extends React.Component {
           example project
         </Typography>
         <Typography gutterBottom>
-          <Link href="/about">
+          <Link href="/count">
             <a>Go to the about page</a>
           </Link>
         </Typography>
@@ -74,4 +76,11 @@ Index.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Index);
+const mapStateToProps = state => ({
+  light: state.test.light
+})
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps)
+)(Index);

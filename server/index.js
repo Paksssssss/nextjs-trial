@@ -20,6 +20,10 @@ app
       app.render(req,res,'/about', {})
     })
 
+    server.get('/clock', async (req, res)=> {
+      app.render(req,res,'/clock', {})
+    })
+
     server.get("*", (req, res)=> {
       return handle(req,res)
     });
